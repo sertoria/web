@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sertoria
 
-## Getting Started
+**Inteligencia Artificial Empresarial**
 
-First, run the development server:
+Web corporativa de Sertoria, consultora especializada en IA empresarial: analítica avanzada, optimización de procesos e implantación estratégica.
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Estilos:** Tailwind CSS v4
+- **Tipografías:** Cormorant Garamond (serif) + Inter (sans)
+- **Lenguaje:** TypeScript
+
+## Diseño
+
+Inspirado en [Obsidian Assembly](https://obsidianassembly.com/):
+- Minimalista, dark mode
+- Mucho whitespace
+- Tipografía serif elegante
+- Animaciones sutiles
+- Copy evocador pero profesional
+
+## Páginas
+
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Landing principal |
+| `/servicios` | Servicios de IA (Analítica, Optimización, Implantación, IA Generativa) |
+| `/metodologia` | Principios y fases de trabajo |
+| `/nosotros` | Historia, valores y enfoque |
+| `/contacto` | Formulario de contacto |
+
+## Desarrollo
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Servidor de desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build de producción
+npm run build
+
+# Servir build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Preparado para deploy en:
+- **Vercel** (recomendado): `vercel deploy`
+- **Cualquier hosting Node.js**
+- **Static export**: añadir `output: 'export'` en `next.config.ts`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## TODO
 
-## Learn More
+- [ ] Conectar formulario de contacto con backend (Resend, SendGrid, etc.)
+- [ ] Añadir favicon y OG images personalizados
+- [ ] SEO: meta tags específicos por página
+- [ ] Analytics (Plausible, Vercel Analytics)
+- [ ] Página de política de privacidad
+- [ ] Blog/casos de estudio (opcional)
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/
+│   ├── page.tsx          # Home
+│   ├── servicios/
+│   ├── metodologia/
+│   ├── nosotros/
+│   ├── contacto/
+│   ├── layout.tsx        # Layout global
+│   └── globals.css       # Estilos globales
+└── components/
+    ├── Navigation.tsx
+    └── Footer.tsx
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*La excelencia precede al resultado.*
