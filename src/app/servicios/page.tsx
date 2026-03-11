@@ -1,4 +1,11 @@
 import Link from "next/link";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Servicios",
+  description: "Servicios de IA empresarial: analítica avanzada, optimización de procesos, implantación estratégica e IA generativa.",
+};
 
 const services = [
   {
@@ -57,12 +64,12 @@ const services = [
 
 export default function ServiciosPage() {
   return (
-    <div className="grid-bg pt-32">
+    <div className="grid-bg noise-overlay page-transition pt-32">
       {/* Header */}
       <section className="px-6 md:px-12 pb-24 border-b border-white/5">
         <div className="max-w-7xl mx-auto">
-          <p className="text-muted text-sm tracking-widest mb-6">Servicios</p>
-          <h1 className="heading-xl max-w-4xl">
+          <p className="text-muted text-sm tracking-widest mb-6 animate-fade-in opacity-0">Servicios</p>
+          <h1 className="heading-xl max-w-4xl animate-fade-in opacity-0 animate-delay-100">
             Capacidades<br />
             <span className="text-muted">al servicio del negocio</span>
           </h1>
@@ -76,20 +83,22 @@ export default function ServiciosPage() {
           className="py-24 px-6 md:px-12 border-b border-white/5"
         >
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center mb-12">
-              <span className="section-number">{service.number}</span>
-              <span className="section-line" />
-              <span className="text-sm text-muted tracking-wider">{service.subtitle}</span>
-            </div>
+            <ScrollReveal>
+              <div className="flex items-center mb-12">
+                <span className="section-number">{service.number}</span>
+                <span className="section-line" />
+                <span className="text-sm text-muted tracking-wider">{service.subtitle}</span>
+              </div>
+            </ScrollReveal>
 
             <div className="grid md:grid-cols-2 gap-12 md:gap-24">
-              <div>
+              <ScrollReveal>
                 <h2 className="heading-lg mb-6">{service.title}</h2>
                 <p className="text-muted leading-relaxed">
                   {service.description}
                 </p>
-              </div>
-              <div>
+              </ScrollReveal>
+              <ScrollReveal delay={100}>
                 <h3 className="text-sm text-muted tracking-wider uppercase mb-6">
                   Capacidades
                 </h3>
@@ -97,14 +106,14 @@ export default function ServiciosPage() {
                   {service.capabilities.map((capability, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-4 border-b border-white/5 pb-4"
+                      className="flex items-start gap-4 border-b border-white/5 pb-4 group hover:border-white/20 transition-colors"
                     >
-                      <span className="font-serif text-muted text-sm">{i + 1}</span>
+                      <span className="font-serif text-muted text-sm group-hover:text-white transition-colors">{i + 1}</span>
                       <span className="text-sm">{capability}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
@@ -113,20 +122,22 @@ export default function ServiciosPage() {
       {/* CTA */}
       <section className="py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="heading-lg mb-6">
-            ¿No encuentra lo que busca?
-          </h2>
-          <p className="text-muted max-w-xl mx-auto mb-12">
-            Cada organización es única. Si tiene un desafío específico que no 
-            encaja en estas categorías, hablemos. Probablemente tengamos una solución.
-          </p>
-          <Link
-            href="/contacto"
-            className="inline-flex items-center gap-3 border border-white px-10 py-5 text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300"
-          >
-            Iniciar Conversación
-            <span className="text-lg">→</span>
-          </Link>
+          <ScrollReveal>
+            <h2 className="heading-lg mb-6">
+              ¿No encuentra lo que busca?
+            </h2>
+            <p className="text-muted max-w-xl mx-auto mb-12">
+              Cada organización es única. Si tiene un desafío específico que no 
+              encaja en estas categorías, hablemos. Probablemente tengamos una solución.
+            </p>
+            <Link
+              href="/contacto"
+              className="btn-glow inline-flex items-center gap-3 border border-white px-10 py-5 text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Iniciar Conversación
+              <span className="text-lg">→</span>
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </div>
