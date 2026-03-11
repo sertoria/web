@@ -1,4 +1,11 @@
 import Link from "next/link";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Metodología",
+  description: "Nuestra metodología de trabajo: principios y fases para proyectos de IA empresarial exitosos.",
+};
 
 const phases = [
   {
@@ -63,12 +70,12 @@ const principles = [
 
 export default function MetodologiaPage() {
   return (
-    <div className="grid-bg pt-32">
+    <div className="grid-bg noise-overlay page-transition pt-32">
       {/* Header */}
       <section className="px-6 md:px-12 pb-24 border-b border-white/5">
         <div className="max-w-7xl mx-auto">
-          <p className="text-muted text-sm tracking-widest mb-6">Metodología</p>
-          <h1 className="heading-xl max-w-4xl">
+          <p className="text-muted text-sm tracking-widest mb-6 animate-fade-in opacity-0">Metodología</p>
+          <h1 className="heading-xl max-w-4xl animate-fade-in opacity-0 animate-delay-100">
             Cómo trabajamos<br />
             <span className="text-muted">y por qué funciona</span>
           </h1>
@@ -78,24 +85,25 @@ export default function MetodologiaPage() {
       {/* Principles */}
       <section className="py-24 px-6 md:px-12 border-b border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center mb-16">
-            <span className="section-number">Principios</span>
-            <span className="section-line" />
-            <span className="text-sm text-muted tracking-wider">Lo que guía cada decisión</span>
-          </div>
+          <ScrollReveal>
+            <div className="flex items-center mb-16">
+              <span className="section-number">Principios</span>
+              <span className="section-line" />
+              <span className="text-sm text-muted tracking-wider">Lo que guía cada decisión</span>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {principles.map((principle, index) => (
-              <div
-                key={index}
-                className="border border-white/10 p-8 hover:border-white/30 transition-colors duration-500"
-              >
-                <span className="font-serif text-3xl text-muted">{index + 1}</span>
-                <h3 className="heading-md mt-4 mb-4">{principle.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">
-                  {principle.description}
-                </p>
-              </div>
+              <ScrollReveal key={index} delay={index * 80}>
+                <div className="card-hover border border-white/10 p-8 h-full">
+                  <span className="font-serif text-3xl text-muted">{index + 1}</span>
+                  <h3 className="heading-md mt-4 mb-4">{principle.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">
+                    {principle.description}
+                  </p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -104,46 +112,49 @@ export default function MetodologiaPage() {
       {/* Phases */}
       <section className="py-24 px-6 md:px-12 border-b border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center mb-16">
-            <span className="section-number">Fases</span>
-            <span className="section-line" />
-            <span className="text-sm text-muted tracking-wider">El proceso de principio a fin</span>
-          </div>
+          <ScrollReveal>
+            <div className="flex items-center mb-16">
+              <span className="section-number">Fases</span>
+              <span className="section-line" />
+              <span className="text-sm text-muted tracking-wider">El proceso de principio a fin</span>
+            </div>
+          </ScrollReveal>
 
           <div className="space-y-16">
             {phases.map((phase, index) => (
-              <div
-                key={phase.number}
-                className="grid md:grid-cols-12 gap-8 items-start border-b border-white/5 pb-16 last:border-0"
-              >
-                <div className="md:col-span-1">
-                  <span className="font-serif text-4xl text-muted">{phase.number}</span>
-                </div>
-                <div className="md:col-span-5">
-                  <div className="flex items-center gap-4 mb-4">
-                    <h3 className="heading-md">{phase.title}</h3>
-                    <span className="text-xs text-muted border border-white/10 px-3 py-1">
-                      {phase.duration}
+              <ScrollReveal key={phase.number} delay={index * 50}>
+                <div className="grid md:grid-cols-12 gap-8 items-start border-b border-white/5 pb-16 last:border-0 last:pb-0 group">
+                  <div className="md:col-span-1">
+                    <span className="font-serif text-4xl text-muted group-hover:text-white transition-colors duration-500">
+                      {phase.number}
                     </span>
                   </div>
-                  <p className="text-muted leading-relaxed">
-                    {phase.description}
-                  </p>
+                  <div className="md:col-span-5">
+                    <div className="flex flex-wrap items-center gap-4 mb-4">
+                      <h3 className="heading-md">{phase.title}</h3>
+                      <span className="text-xs text-muted border border-white/10 px-3 py-1 rounded-full">
+                        {phase.duration}
+                      </span>
+                    </div>
+                    <p className="text-muted leading-relaxed">
+                      {phase.description}
+                    </p>
+                  </div>
+                  <div className="md:col-span-6">
+                    <h4 className="text-sm text-muted tracking-wider uppercase mb-6">
+                      Entregables
+                    </h4>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {phase.outputs.map((output, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm group/item">
+                          <span className="text-muted group-hover/item:text-white transition-colors">→</span>
+                          <span className="group-hover/item:text-white transition-colors">{output}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="md:col-span-6">
-                  <h4 className="text-sm text-muted tracking-wider uppercase mb-4">
-                    Entregables
-                  </h4>
-                  <ul className="grid grid-cols-2 gap-3">
-                    {phase.outputs.map((output, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-muted">→</span>
-                        {output}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -152,21 +163,23 @@ export default function MetodologiaPage() {
       {/* CTA */}
       <section className="py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="heading-lg mb-6">
-            ¿Listo para empezar?
-          </h2>
-          <p className="text-muted max-w-xl mx-auto mb-12">
-            El primer paso es siempre una conversación. 
-            Sin PowerPoints de 50 páginas, sin promesas vacías. 
-            Solo una evaluación honesta de lo que podemos lograr juntos.
-          </p>
-          <Link
-            href="/contacto"
-            className="inline-flex items-center gap-3 border border-white px-10 py-5 text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300"
-          >
-            Solicitar Diagnóstico
-            <span className="text-lg">→</span>
-          </Link>
+          <ScrollReveal>
+            <h2 className="heading-lg mb-6">
+              ¿Listo para empezar?
+            </h2>
+            <p className="text-muted max-w-xl mx-auto mb-12">
+              El primer paso es siempre una conversación. 
+              Sin PowerPoints de 50 páginas, sin promesas vacías. 
+              Solo una evaluación honesta de lo que podemos lograr juntos.
+            </p>
+            <Link
+              href="/contacto"
+              className="btn-glow inline-flex items-center gap-3 border border-white px-10 py-5 text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Solicitar Diagnóstico
+              <span className="text-lg">→</span>
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </div>
