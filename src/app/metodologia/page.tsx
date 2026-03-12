@@ -3,68 +3,130 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Metodología",
-  description: "Nuestra metodología de trabajo: principios y fases para proyectos de IA empresarial exitosos.",
+  title: "Metodología | Sertoria",
+  description: "Nuestro proceso de trabajo: Discovery, POC, Producción y Evolución. Diseñado para minimizar riesgo y maximizar valor en proyectos de IA.",
 };
 
 const phases = [
   {
     number: "01",
-    title: "Diagnóstico",
-    duration: "1-2 semanas",
-    description: "Antes de proponer, escuchamos. Analizamos su contexto, sus datos, sus procesos actuales. Identificamos oportunidades reales, no soluciones buscando problemas.",
-    outputs: ["Mapa de procesos actual", "Inventario de datos", "Quick wins identificados", "Informe de viabilidad"],
+    name: "Discovery",
+    duration: "1–2 semanas",
+    objective: "Entender el problema real y definir el camino",
+    description: "Antes de escribir una línea de código, necesitamos entender el contexto. ¿Cuál es el problema de negocio? ¿Qué datos existen? ¿Quién usará la solución? ¿Cómo se mide el éxito?",
+    activities: [
+      "Entrevistas con stakeholders clave",
+      "Auditoría de datos disponibles",
+      "Mapeo de procesos actuales",
+      "Análisis de viabilidad técnica",
+      "Definición de métricas de éxito",
+      "Identificación de quick wins",
+    ],
+    deliverables: [
+      "Documento de requisitos y alcance",
+      "Assessment de madurez de datos",
+      "Propuesta de solución técnica",
+      "Roadmap con fases y timeline",
+      "Presupuesto detallado",
+    ],
+    outcome: "Tendrás claridad total sobre qué vamos a construir, por qué, y cómo sabremos si funciona.",
   },
   {
     number: "02",
-    title: "Estrategia",
-    duration: "2-3 semanas",
-    description: "Diseñamos el roadmap. Qué hacer primero, qué puede esperar, qué impacto esperar de cada iniciativa. Todo con métricas claras y plazos realistas.",
-    outputs: ["Roadmap priorizado", "Business case por iniciativa", "Arquitectura propuesta", "Plan de recursos"],
+    name: "Proof of Concept",
+    duration: "4–6 semanas",
+    objective: "Demostrar valor antes de escalar",
+    description: "Construimos un prototipo funcional con datos reales para validar que la solución propuesta resuelve el problema. Este es el momento de aprender y ajustar, con inversión controlada.",
+    activities: [
+      "Setup de entorno de desarrollo",
+      "Preparación y limpieza de datos",
+      "Desarrollo del modelo o sistema core",
+      "Integración básica con sistemas existentes",
+      "Testing con usuarios reales",
+      "Iteración basada en feedback",
+    ],
+    deliverables: [
+      "Prototipo funcional",
+      "Documentación técnica inicial",
+      "Métricas de rendimiento del modelo",
+      "Informe de lecciones aprendidas",
+      "Go/No-go recommendation",
+    ],
+    outcome: "Verás la solución funcionando con tus datos antes de comprometerte a un proyecto mayor.",
   },
   {
     number: "03",
-    title: "Piloto",
-    duration: "4-8 semanas",
-    description: "Implementamos un piloto acotado. Suficientemente ambicioso para demostrar valor, suficientemente controlado para limitar riesgos. Medimos todo.",
-    outputs: ["MVP funcional", "Métricas de baseline", "Aprendizajes documentados", "Go/No-go fundamentado"],
+    name: "Producción",
+    duration: "8–16 semanas",
+    objective: "Construir una solución robusta y escalable",
+    description: "Con el POC validado, pasamos a desarrollo completo. Trabajamos en sprints de 2 semanas con demos regulares. La solución se construye con los estándares de calidad que requiere un entorno enterprise.",
+    activities: [
+      "Arquitectura de producción",
+      "Desarrollo iterativo en sprints",
+      "Integración completa con sistemas",
+      "Testing exhaustivo (unit, integration, e2e)",
+      "Setup de monitoreo y alertas",
+      "Documentación completa",
+      "Formación del equipo interno",
+    ],
+    deliverables: [
+      "Sistema en producción",
+      "Pipeline de CI/CD configurado",
+      "Suite de tests automatizados",
+      "Documentación técnica y de usuario",
+      "Runbook de operaciones",
+      "Sesiones de formación grabadas",
+    ],
+    outcome: "Una solución en producción, documentada, monitorizada, y con tu equipo formado para operarla.",
   },
   {
     number: "04",
-    title: "Escalado",
-    duration: "Variable",
-    description: "Si el piloto demuestra valor, escalamos. Integramos con sistemas existentes, formamos equipos, establecemos governance. La adopción es tan importante como la tecnología.",
-    outputs: ["Integración completa", "Equipo formado", "Documentación técnica", "SLAs definidos"],
-  },
-  {
-    number: "05",
-    title: "Evolución",
+    name: "Evolución",
     duration: "Continuo",
-    description: "La IA no es un proyecto, es una capacidad. Monitorizamos rendimiento, iteramos sobre el modelo, identificamos nuevas oportunidades. Mejora continua real.",
-    outputs: ["Monitorización activa", "Iteraciones periódicas", "Expansión de casos de uso", "Transferencia de conocimiento"],
+    objective: "Mantener y mejorar el valor generado",
+    description: "El lanzamiento no es el final — es el principio. Los sistemas de IA necesitan mantenimiento, reentrenamiento, y mejora continua basada en datos de uso real.",
+    activities: [
+      "Monitoreo de rendimiento del modelo",
+      "Análisis de drift y degradación",
+      "Reentrenamiento periódico",
+      "Implementación de mejoras",
+      "Soporte técnico",
+      "Actualizaciones de dependencias",
+    ],
+    deliverables: [
+      "Informes mensuales de rendimiento",
+      "Actualizaciones de modelo según necesidad",
+      "Mejoras incrementales",
+      "Soporte técnico según SLA",
+    ],
+    outcome: "Un sistema que mejora con el tiempo en lugar de degradarse.",
   },
 ];
 
 const principles = [
   {
     title: "El contexto define la solución",
-    description: "No existe la 'mejor IA'. Existe la IA adecuada para su contexto: sus datos, su equipo, sus restricciones, sus objetivos.",
+    description: "No existe una 'mejor' arquitectura de IA. La solución correcta depende del problema, los datos, el equipo, y las restricciones de cada organización. Por eso empezamos siempre por entender.",
   },
   {
-    title: "Los datos sin estrategia son ruido",
-    description: "Tener datos no es tener insights. El valor está en saber qué preguntas hacer, cómo estructurar la información y cómo actuar sobre ella.",
+    title: "Valor incremental, riesgo controlado",
+    description: "Preferimos entregar pequeñas mejoras frecuentes que grandes releases arriesgados. Cada entrega debe generar valor por sí misma, incluso si el proyecto se detiene mañana.",
   },
   {
-    title: "La adopción importa más que la tecnología",
-    description: "El mejor modelo es inútil si nadie lo usa. Diseñamos para las personas que operarán el sistema, no para impresionar en una demo.",
+    title: "Los datos mandan",
+    description: "No nos enamoramos de tecnologías ni de arquitecturas. Dejamos que los datos nos digan qué funciona. Si algo no mejora las métricas, lo descartamos.",
   },
   {
-    title: "Medir es el primer paso para mejorar",
-    description: "Si no podemos medir el impacto, no podemos justificar la inversión. Establecemos baselines y métricas desde el día uno.",
+    title: "La adopción es tan importante como la tecnología",
+    description: "Una solución perfecta que nadie usa es inútil. Diseñamos pensando en los usuarios finales, involucramos a los stakeholders, y dedicamos tiempo a change management.",
   },
   {
-    title: "La simplicidad es la máxima sofisticación",
-    description: "A veces un dashboard bien diseñado vale más que un modelo de deep learning. Buscamos la solución más simple que resuelva el problema.",
+    title: "Documentación como ciudadano de primera",
+    description: "El código sin documentación es deuda técnica. Todo lo que construimos viene con documentación completa: arquitectura, APIs, runbooks, y guías de troubleshooting.",
+  },
+  {
+    title: "Transferencia de conocimiento real",
+    description: "Nuestro objetivo es que tu equipo pueda operar y evolucionar la solución sin nosotros. Incluimos formación, pair programming, y documentación detallada en cada proyecto.",
   },
 ];
 
@@ -76,87 +138,194 @@ export default function MetodologiaPage() {
         <div className="max-w-7xl mx-auto">
           <p className="text-muted text-sm tracking-widest mb-6 animate-fade-in opacity-0">Metodología</p>
           <h1 className="heading-xl max-w-4xl animate-fade-in opacity-0 animate-delay-100">
-            Cómo trabajamos<br />
-            <span className="text-muted">y por qué funciona</span>
+            Un proceso diseñado<br />
+            <span className="text-muted">para reducir riesgo</span>
           </h1>
+          <p className="text-muted max-w-2xl mt-8 animate-fade-in opacity-0 animate-delay-200 text-lg leading-relaxed">
+            La mayoría de proyectos de IA fallan. Nuestro proceso está diseñado 
+            para que el tuyo no sea uno de ellos.
+          </p>
         </div>
       </section>
 
-      {/* Principles */}
+      {/* Why methodology matters */}
+      <section className="py-24 px-6 md:px-12 border-b border-white/5 bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              {[
+                {
+                  stat: "87%",
+                  label: "de proyectos de IA",
+                  context: "no llegan a producción",
+                  source: "Gartner, 2024",
+                },
+                {
+                  stat: "76%",
+                  label: "de ejecutivos",
+                  context: "no confían en sus datos",
+                  source: "KPMG Survey, 2024",
+                },
+                {
+                  stat: "2.5x",
+                  label: "más probabilidad de éxito",
+                  context: "con metodología structured",
+                  source: "McKinsey, 2024",
+                },
+              ].map((item, index) => (
+                <div key={index} className="p-6">
+                  <div className="stat-number-sm">{item.stat}</div>
+                  <p className="font-medium mt-2">{item.label}</p>
+                  <p className="text-sm text-muted">{item.context}</p>
+                  <p className="text-xs text-muted mt-2">{item.source}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Process Overview */}
       <section className="py-24 px-6 md:px-12 border-b border-white/5">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <div className="flex items-center mb-16">
-              <span className="section-number">Principios</span>
-              <span className="section-line" />
-              <span className="text-sm text-muted tracking-wider">Lo que guía cada decisión</span>
+            <p className="text-center text-muted mb-12">
+              Nuestro proceso en 4 fases, diseñado para validar antes de escalar
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {phases.map((phase, index) => (
+                <div key={index} className="text-center p-4 border border-white/5 bg-white/[0.01]">
+                  <span className="text-xs text-muted tracking-wider">{phase.number}</span>
+                  <h3 className="font-medium mt-2">{phase.name}</h3>
+                  <p className="text-xs text-muted mt-1">{phase.duration}</p>
+                </div>
+              ))}
             </div>
           </ScrollReveal>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {principles.map((principle, index) => (
-              <ScrollReveal key={index} delay={index * 80}>
-                <div className="card-hover border border-white/10 p-8 h-full">
-                  <span className="font-serif text-3xl text-muted">{index + 1}</span>
-                  <h3 className="heading-md mt-4 mb-4">{principle.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed">
-                    {principle.description}
-                  </p>
+      {/* Detailed Phases */}
+      {phases.map((phase, phaseIndex) => (
+        <section
+          key={phase.number}
+          className={`py-32 px-6 md:px-12 border-b border-white/5 ${phaseIndex % 2 === 1 ? 'bg-white/[0.01]' : ''}`}
+        >
+          <div className="max-w-7xl mx-auto">
+            <ScrollReveal>
+              <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+                <div className="flex items-center">
+                  <span className="section-number">{phase.number}</span>
+                  <span className="section-line" />
+                  <span className="text-sm text-muted tracking-wider">{phase.name}</span>
+                </div>
+                <span className="badge">{phase.duration}</span>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+              <ScrollReveal>
+                <h2 className="heading-lg mb-4">{phase.name}</h2>
+                <p className="text-xl text-muted mb-6">{phase.objective}</p>
+                <p className="text-muted leading-relaxed mb-8">{phase.description}</p>
+                <div className="p-6 border border-white/10 bg-white/[0.02]">
+                  <p className="text-sm font-medium mb-2">Outcome</p>
+                  <p className="text-sm text-muted">{phase.outcome}</p>
                 </div>
               </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Phases */}
-      <section className="py-24 px-6 md:px-12 border-b border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <ScrollReveal>
-            <div className="flex items-center mb-16">
-              <span className="section-number">Fases</span>
-              <span className="section-line" />
-              <span className="text-sm text-muted tracking-wider">El proceso de principio a fin</span>
-            </div>
-          </ScrollReveal>
-
-          <div className="space-y-16">
-            {phases.map((phase, index) => (
-              <ScrollReveal key={phase.number} delay={index * 50}>
-                <div className="grid md:grid-cols-12 gap-8 items-start border-b border-white/5 pb-16 last:border-0 last:pb-0 group">
-                  <div className="md:col-span-1">
-                    <span className="font-serif text-4xl text-muted group-hover:text-white transition-colors duration-500">
-                      {phase.number}
-                    </span>
-                  </div>
-                  <div className="md:col-span-5">
-                    <div className="flex flex-wrap items-center gap-4 mb-4">
-                      <h3 className="heading-md">{phase.title}</h3>
-                      <span className="text-xs text-muted border border-white/10 px-3 py-1 rounded-full">
-                        {phase.duration}
-                      </span>
-                    </div>
-                    <p className="text-muted leading-relaxed">
-                      {phase.description}
-                    </p>
-                  </div>
-                  <div className="md:col-span-6">
-                    <h4 className="text-sm text-muted tracking-wider uppercase mb-6">
-                      Entregables
-                    </h4>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {phase.outputs.map((output, i) => (
-                        <li key={i} className="flex items-start gap-3 text-sm group/item">
-                          <span className="text-muted group-hover/item:text-white transition-colors">→</span>
-                          <span className="group-hover/item:text-white transition-colors">{output}</span>
+              <div className="space-y-8">
+                <ScrollReveal delay={100}>
+                  <div>
+                    <h3 className="text-sm tracking-wider uppercase text-muted mb-4">Actividades</h3>
+                    <ul className="space-y-2">
+                      {phase.activities.map((activity, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm">
+                          <span className="text-muted mt-1">→</span>
+                          <span>{activity}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
+                </ScrollReveal>
+
+                <ScrollReveal delay={150}>
+                  <div>
+                    <h3 className="text-sm tracking-wider uppercase text-muted mb-4">Entregables</h3>
+                    <ul className="space-y-2">
+                      {phase.deliverables.map((deliverable, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-muted">
+                          <span className="text-white/50">◇</span>
+                          <span>{deliverable}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </ScrollReveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* Principles */}
+      <section className="py-32 px-6 md:px-12 border-b border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="flex items-center mb-8">
+              <span className="section-number">05</span>
+              <span className="section-line" />
+              <span className="text-sm text-muted tracking-wider">Principios</span>
+            </div>
+            <h2 className="heading-lg mb-16 max-w-3xl">
+              Seis principios que guían
+              <span className="text-muted"> cada decisión</span>
+            </h2>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {principles.map((principle, index) => (
+              <ScrollReveal key={index} delay={index * 100}>
+                <div className="border-t border-white/20 pt-6">
+                  <span className="text-xs text-muted tracking-wider">0{index + 1}</span>
+                  <h3 className="font-medium mt-3 mb-3">{principle.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{principle.description}</p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Tools & Tech */}
+      <section className="py-24 px-6 md:px-12 border-b border-white/5 bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <h2 className="heading-md mb-8 text-center">Stack tecnológico</h2>
+            <p className="text-center text-muted max-w-2xl mx-auto mb-12">
+              No estamos casados con ninguna tecnología. Elegimos las herramientas 
+              correctas para cada problema.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {[
+                { category: "LLMs", tools: ["OpenAI", "Anthropic", "Azure OpenAI", "Llama", "Mistral"] },
+                { category: "ML Frameworks", tools: ["PyTorch", "TensorFlow", "Scikit-learn", "XGBoost", "LightGBM"] },
+                { category: "MLOps", tools: ["MLflow", "Weights & Biases", "DVC", "Kubeflow", "BentoML"] },
+                { category: "Data", tools: ["Snowflake", "Databricks", "BigQuery", "Redshift", "dbt"] },
+                { category: "Cloud", tools: ["AWS", "GCP", "Azure", "Kubernetes", "Terraform"] },
+                { category: "Orchestration", tools: ["LangChain", "LlamaIndex", "Airflow", "Prefect", "Temporal"] },
+              ].map((stack, index) => (
+                <div key={index} className="col-span-1">
+                  <h3 className="text-xs tracking-wider uppercase text-muted mb-3">{stack.category}</h3>
+                  <div className="space-y-1">
+                    {stack.tools.map((tool, i) => (
+                      <p key={i} className="text-sm">{tool}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -168,15 +337,14 @@ export default function MetodologiaPage() {
               ¿Listo para empezar?
             </h2>
             <p className="text-muted max-w-xl mx-auto mb-12">
-              El primer paso es siempre una conversación. 
-              Sin PowerPoints de 50 páginas, sin promesas vacías. 
-              Solo una evaluación honesta de lo que podemos lograr juntos.
+              El primer paso es siempre una conversación. Cuéntanos tu desafío 
+              y te diremos honestamente si podemos ayudar.
             </p>
             <Link
               href="/contacto"
-              className="btn-glow inline-flex items-center gap-3 border border-white px-10 py-5 text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+              className="btn-primary inline-flex items-center justify-center gap-3 px-10 py-5 text-sm font-medium"
             >
-              Solicitar Diagnóstico
+              Solicitar Discovery Call
               <span className="text-lg">→</span>
             </Link>
           </ScrollReveal>

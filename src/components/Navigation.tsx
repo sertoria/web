@@ -4,130 +4,165 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
-const navItems = [
-  { href: "/", label: "Inicio" },
+const links = [
   { href: "/servicios", label: "Servicios" },
   { href: "/metodologia", label: "Metodología" },
   { href: "/nosotros", label: "Nosotros" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export function Navigation() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 50);
     };
-    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/5" 
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
-        <Link href="/" className="heading-md tracking-wider group">
-          <span className="inline-block transition-transform duration-300 group-hover:scale-105">
-            Sertoria
-          </span>
-        </Link>
-
-        {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-12 text-sm tracking-wide">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`hover-line transition-opacity duration-300 ${
-                  pathname === item.href ? "opacity-100" : "opacity-60 hover:opacity-100"
-                }`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <Link
-              href="/contacto"
-              className="btn-glow border border-white/20 px-5 py-2.5 text-sm hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Contacto
-            </Link>
-          </li>
-        </ul>
-
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2 relative w-8 h-8 items-center justify-center"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          <span 
-            className={`w-6 h-px bg-white transition-all duration-300 absolute ${
-              isOpen ? "rotate-45" : "-translate-y-1.5"
-            }`} 
-          />
-          <span 
-            className={`w-6 h-px bg-white transition-all duration-300 ${
-              isOpen ? "opacity-0 scale-0" : "opacity-100"
-            }`} 
-          />
-          <span 
-            className={`w-6 h-px bg-white transition-all duration-300 absolute ${
-              isOpen ? "-rotate-45" : "translate-y-1.5"
-            }`} 
-          />
-        </button>
-      </nav>
-
-      {/* Mobile menu */}
-      <div 
-        className={`md:hidden absolute top-full left-0 right-0 bg-[#0a0a0a] border-t border-white/10 transition-all duration-300 ${
-          isOpen 
-            ? "opacity-100 translate-y-0" 
-            : "opacity-0 -translate-y-4 pointer-events-none"
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? "bg-[#050505]/90 backdrop-blur-xl border-b border-white/5"
+            : "bg-transparent"
         }`}
       >
-        <ul className="flex flex-col p-6 gap-4">
-          {navItems.map((item, index) => (
-            <li 
-              key={item.href}
-              style={{ transitionDelay: isOpen ? `${index * 50}ms` : "0ms" }}
-              className={`transition-all duration-300 ${
-                isOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-              }`}
-            >
-              <Link
-                href={item.href}
-                className="block py-2 text-lg"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-          <li 
-            className="pt-4 border-t border-white/10"
-            style={{ transitionDelay: isOpen ? "200ms" : "0ms" }}
-          >
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
             <Link
-              href="/contacto"
-              className="block py-2 text-lg"
-              onClick={() => setIsOpen(false)}
+              href="/"
+              className="font-serif text-xl tracking-wide hover:opacity-100 transition-opacity"
             >
-              Contacto
+              Sertoria
             </Link>
-          </li>
-        </ul>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-10">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm tracking-wide transition-all duration-300 hover:text-white ${
+                    pathname === link.href
+                      ? "text-white"
+                      : "text-muted"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link
+                href="/contacto"
+                className="btn-primary text-sm px-5 py-2.5 font-medium tracking-wide"
+              >
+                Hablemos
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            >
+              <span
+                className={`block w-6 h-px bg-white transition-all duration-300 ${
+                  isMobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
+                }`}
+              />
+              <span
+                className={`block w-6 h-px bg-white transition-all duration-300 ${
+                  isMobileMenuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`block w-6 h-px bg-white transition-all duration-300 ${
+                  isMobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-[#050505] transition-all duration-500 md:hidden ${
+          isMobileMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center min-h-screen gap-8 p-6">
+          {links.map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`font-serif text-3xl tracking-wide transition-all duration-500 hover:text-white ${
+                pathname === link.href ? "text-white" : "text-muted"
+              }`}
+              style={{
+                transitionDelay: isMobileMenuOpen ? `${index * 100}ms` : "0ms",
+                opacity: isMobileMenuOpen ? 1 : 0,
+                transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)",
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/contacto"
+            className="btn-primary text-sm px-8 py-4 mt-4 font-medium tracking-wide"
+            style={{
+              transitionDelay: isMobileMenuOpen ? `${links.length * 100}ms` : "0ms",
+              opacity: isMobileMenuOpen ? 1 : 0,
+              transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)",
+            }}
+          >
+            Hablemos →
+          </Link>
+          
+          {/* Contact info in mobile menu */}
+          <div 
+            className="mt-12 text-center"
+            style={{
+              transitionDelay: isMobileMenuOpen ? `${(links.length + 1) * 100}ms` : "0ms",
+              opacity: isMobileMenuOpen ? 1 : 0,
+              transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)",
+              transition: "all 0.5s ease",
+            }}
+          >
+            <a href="mailto:hola@sertoria.com" className="text-sm text-muted hover:text-white transition-colors">
+              hola@sertoria.com
+            </a>
+            <p className="text-xs text-muted mt-2">Madrid, España</p>
+          </div>
+        </div>
       </div>
-    </header>
+    </>
   );
 }
